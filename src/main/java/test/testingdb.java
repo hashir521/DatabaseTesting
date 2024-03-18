@@ -12,7 +12,7 @@ import com.mysql.cj.protocol.Resultset;
 
 public class testingdb {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         inserData d = new inserData();
         d.dataBaseTesting();
 
