@@ -21,7 +21,7 @@ public class inserData extends testingdb {
     public void dataBaseTesting() throws InterruptedException {
         String JDBC_URL = "jdbc:mysql://localhost:3306/test";
         String USERNAME = "root";
-        String PASSWORD = "admin";
+        String PASSWORD = "";
         String s;
         ResultSet rs;
 
@@ -35,20 +35,19 @@ public class inserData extends testingdb {
             stmt.executeUpdate(createTableQuery);
             
             // Batch insert statements
-//          stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Arqum', 'Shakeel')");
-//          stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Uzair', 'Usaid')");
-//          stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Muhammad', 'Hashir')");
-//          stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Hasan', 'Hashir')");
-            //stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Jamil', 'Akhtar')");
-            
+	        stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Arqum', 'Arqum1222@gmail.com')");
+	        stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Uzair', 'Uzair@2333@yahoo.com')");
+	        stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Muhammad', 'Muhammad10@yahoo.com')");
+	        stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Hasan', 'Hasan999@hotmail.com')");
+                        
             int rowsInserted[] = stmt.executeBatch();
             System.out.println(rowsInserted.length + " row(s) inserted.");
 
-            stmt.executeUpdate("UPDATE muhammad set email = 'Arqum1222@gmail.com' where username = 'Arqum'");
-            stmt.executeUpdate("UPDATE muhammad SET email = 'Uzair@2333@yahoo.com' WHERE username = 'Uzair'");
-            stmt.executeUpdate("UPDATE muhammad SET email = 'Muhammad10@yahoo.com' WHERE username = 'Muhammad'");
-            stmt.executeUpdate("UPDATE muhammad SET email = 'Hasan999@hotmail.com' WHERE username = 'Hasan'");
-            System.out.println("Records updated successfully.");
+          //  stmt.executeUpdate("UPDATE muhammad set email = 'Arqum1222@gmail.com' where username = 'Arqum'");
+           // stmt.executeUpdate("UPDATE muhammad SET email = 'Uzair@2333@yahoo.com' WHERE username = 'Uzair'");
+           // stmt.executeUpdate("UPDATE muhammad SET email = 'Muhammad10@yahoo.com' WHERE username = 'Muhammad'");
+           // stmt.executeUpdate("UPDATE muhammad SET email = 'Hasan999@hotmail.com' WHERE username = 'Hasan'");
+           // System.out.println("Records updated successfully.");
             System.out.println("");
             System.out.println("DataBase Records");
             System.out.println("");
@@ -130,7 +129,7 @@ public class inserData extends testingdb {
 
                 // Wait for the login form to be visible after logout
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login")));
-                System.out.println("Logged out successfully");
+                System.out.println(UserName+ " " +"Logged out successfully");
             }
 			/*
 			 * String deleteQuery = "DELETE FROM muhammad WHERE name = 'Jamil'"; int
