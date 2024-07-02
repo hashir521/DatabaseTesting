@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.Duration;
+import java.util.Scanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -31,14 +32,18 @@ public class inserData extends testingdb {
             Statement stmt = con.createStatement();
 
             String createTableQuery = "CREATE TABLE IF NOT EXISTS muhammad (" + "id INT AUTO_INCREMENT PRIMARY KEY,"
-                    + "username VARCHAR(50) NOT NULL," + "email VARCHAR(100) NOT NULL)";
+                    + "username VARCHAR(50) NOT NULL," + "email VARCHAR(100) NOT NULL UNIQUE)";
             stmt.executeUpdate(createTableQuery);
             
             // Batch insert statements
 	        stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Arqum', 'Arqum1222@gmail.com')");
-	        stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Uzair', 'Uzair@2333@yahoo.com')");
+	        stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Muaz', 'Muaz10@hotmail.com')");
+	       stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Uzair', 'Uzair@2333@yahoo.com')");
 	        stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Muhammad', 'Muhammad10@yahoo.com')");
 	        stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Hasan', 'Hasan999@hotmail.com')");
+	        stmt.addBatch("INSERT IGNORE INTO muhammad (username, email) VALUES ('Haq', 'Haq9@hotmail.com')");
+
+	       
                         
             int rowsInserted[] = stmt.executeBatch();
             System.out.println(rowsInserted.length + " row(s) inserted.");
@@ -110,11 +115,13 @@ public class inserData extends testingdb {
                     Thread.sleep(2000);
                     driver.findElement(By.id("password")).sendKeys(Email);
                     Thread.sleep(3000);
-                 // // driver.switchTo().frame(driver.findElement(By.xpath("//*[@id=\"recaptcha-anchor\"]/div[1]")));
-                   // driver.findElement(By.id("recaptcha-anchor-label")).click();
-                   // Thread.sleep(5000);
-                   // driver.findElement(By.cssSelector("recaptcha-checkbox-border")).click();
-                  //  driver.findElement(By.id("register")).click();
+                             
+                    // Handle CAPTCHA manually
+                    System.out.println("Please solve the CAPTCHA manually and press Enter to continue...");
+                    Scanner scanner = new Scanner(System.in);
+                    scanner.nextLine();  // Wait for the user to solve CAPTCHA and press Enter
+                    driver.findElement(By.id("register")).click();
+                    System.out.println("User Register Successfully."+ "\n");
                     driver.findElement(By.id("gotologin")).click();
                     Thread.sleep(2000);
                     continue;
@@ -129,7 +136,7 @@ public class inserData extends testingdb {
 
                 // Wait for the login form to be visible after logout
                 wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("login")));
-                System.out.println(UserName+ " " +"Logged out successfully");
+                System.out.println(UserName+ " " +"Logged out successfully" + "\n");
             }
 			/*
 			 * String deleteQuery = "DELETE FROM muhammad WHERE name = 'Jamil'"; int
